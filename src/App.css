@@ -24,11 +24,10 @@ hr {
   background-color: #cfcccc;
 }
 .nav-item {
-  padding: 0 22px;
+  padding: 0 15px;
 }
 .nav-item a {
-  color: #fff;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
 }
 .active {
@@ -50,4 +49,59 @@ hr {
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
+}
+.search-box input {
+  border: none;
+  outline: none;
+}
+.search-box input:focus {
+  border: none;
+  outline: none;
+}
+
+/* carousel */
+.carousel {
+  height: 80vh;
+  position: relative;
+  top: 20vh;
+  z-index: 100;
+}
+.carousel-item {
+  height: 70vh;
+  border: none;
+}
+.carousel img {
+  width: 150px;
+}
+.carousel-control {
+  width: 120px;
+  height: 50px;
+  position: relative;
+  margin: 0 auto;
+}
+.carousel-control button {
+  width: 47px;
+  height: 47px;
+  background-color: white;
+  color: black;
+  border-radius: 100%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-left: 8px;
+}
+/* .carousel-control-prev {
+  margin-right: 20px;
+} */
+
+/* booking */
+.booking-div label {
+  color: #818181;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.booking-div .form-control {
+  border: 0;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  font-weight: bold;
 }

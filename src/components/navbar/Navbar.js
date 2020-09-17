@@ -1,56 +1,93 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import logo from "../../resources/logo.svg";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-} from "reactstrap";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import logoWhite from "../../resources/logo.svg";
+import logoBlack from "../../resources/Logo.png";
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
+
+const SearchBox = ({ path }) => {
+  if (path === "/") {
+    return (
+      <div className="d-inline-block border px-2 rounded ml-md-auto search-box">
+        <img src={require("../../resources/Icon/search.png")} alt="" />
+        <input
+          className="bg-transparent text-white"
+          type="text"
+          placeholder="Search Your Destination..."
+        />
+      </div>
+    );
+  } else {
+    return <div></div>;
+  }
+};
 
 const MyNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const location = useLocation();
+  const path = location.pathname.toLowerCase();
+  console.log(path);
+  let navStyle = {
+    position: "static",
+    textColor: "black",
+    image: logoBlack,
+  };
+  if (path === "/") {
+    navStyle.position = "absolute";
+    navStyle.textColor = "white";
+    navStyle.image = logoWhite;
+  }
   const toggle = () => setIsOpen(!isOpen);
 
   return (
     <div
-      className="py-2 position-absolute top-0 w-100"
-      style={{ zIndex: "10" }}
+      className="py-2 w-100"
+      style={{ position: navStyle.position, zIndex: 1 }}
     >
-      <Navbar className="container" color="transparent" light expand="md">
-        <NavbarBrand href="/">
-          <Link to="/">
-            <img src={logo} alt="logo" width="120" height="56" />
-          </Link>
-        </NavbarBrand>
+      <Navbar
+        className="container-lg bg-danger"
+        color="transparent"
+        light
+        expand="md"
+      >
+        <Link to="/">
+          <img src={navStyle.image} alt="logo" width="120" height="56" />
+        </Link>
         <Link to="/Login" className="d-inline-block d-md-none ml-auto">
           <button className="btn btn-warning ">Login</button>
         </Link>
         <NavbarToggler className="ml-3 border-white" onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
+        <Collapse className="" isOpen={isOpen} navbar>
+          <SearchBox path={path} />
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink to="/news" activeClassName="active">
+              <NavLink
+                style={{ color: navStyle.textColor }}
+                to="/news"
+                activeClassName="active"
+              >
                 News
               </NavLink>
             </NavItem>
             <NavItem>
-              <Link to="/destination">Destination</Link>
+              <Link style={{ color: navStyle.textColor }} to="/destination">
+                Destination
+              </Link>
             </NavItem>
             <NavItem>
-              <Link to="/blog">Blog</Link>
+              <Link style={{ color: navStyle.textColor }} to="/blog">
+                Blog
+              </Link>
             </NavItem>
             <NavItem>
-              <Link to="/contact">Contact</Link>
+              <Link style={{ color: navStyle.textColor }} to="/contact">
+                Contact
+              </Link>
             </NavItem>
           </Nav>
         </Collapse>
         <Link
           to="/Login"
-          className="d-none d-md-inline-block ml-md-4 ml-auto mr-3"
+          className="d-none d-md-inline-block ml-lg-4 ml-auto mr-lg-3"
         >
           <button className="btn btn-warning ">Login</button>
         </Link>

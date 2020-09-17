@@ -82,7 +82,7 @@ const PlacesSlider = () => {
       <Row className="overflow-hidden overflow-lg-visible mt-3 mt-lg-5">
         {slides(activeIndex)}
       </Row>
-      <Row className="mt-5">
+      <Row className="my-4">
         <Col xs="12">
           <div className="carousel-control m-auto d-block">
             <button onClick={previous} className="btn">

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Col, Container, Form, Row } from "reactstrap";
+import { FbBtn, GoogleBtn, OrLine } from "../login/Login";
 import MyNavbar from "../navbar/Navbar";
 
 const SignUp = () => {
@@ -72,44 +73,10 @@ const SignUp = () => {
         </Col>
       </Row>
       <Row className="justify-content-center align-items-center mt-4">
-        <Col
-          sm="12"
-          md="8"
-          lg="7"
-          className="d-flex justify-content-center align-items-center"
-          style={{ padding: "0 10%" }}
-        >
-          <Col>
-            <hr />
-          </Col>
-          <span>Or</span>
-          <Col>
-            <hr />
-          </Col>
-        </Col>
-        <Col sm="12" md="8" lg="7" className="mt-4">
-          <button className="btn text-dark btn-outline-light  w-75 border rounded-pill d-block m-auto shadow-sm">
-            <img
-              src={require("../../resources/Icon/fb.png")}
-              alt="fb"
-              width="37"
-              height="37"
-            />
-            <span className="ml-5">Continue With Facebook</span>
-          </button>
-          <button
-            className="btn text-dark btn-outline-light w-75 border rounded-pill d-block shadow-sm"
-            style={{ margin: "15px auto" }}
-          >
-            <img
-              src={require("../../resources/Icon/google.png")}
-              alt="fb"
-              width="37"
-              height="37"
-              className="mr-3"
-            />
-            <span className="ml-5">Continue With Google</span>
-          </button>
+        <OrLine />
+        <Col sm="12" md="8" lg="6" className="my-4">
+          <FbBtn />
+          <GoogleBtn />
         </Col>
       </Row>
     </Container>

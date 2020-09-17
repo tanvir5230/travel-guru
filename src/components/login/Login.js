@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Col, Container, Form, Row } from "reactstrap";
 import MyNavbar from "../navbar/Navbar";
-import SignUp from "../signup/SignUp";
 
 const Login = () => {
   return (
@@ -11,7 +10,7 @@ const Login = () => {
         <MyNavbar />
       </Row>
       <Row className="justify-content-center align-items-center">
-        <Col sm={10} md={8} lg={6} className="">
+        <Col sm="10" md="8" lg="6" className="">
           <Form className="p-4 mt-5 shadow">
             <h3 className="font-weight-bold mb-4">Login</h3>
             <input
@@ -56,47 +55,64 @@ const Login = () => {
         </Col>
       </Row>
       <Row className="justify-content-center align-items-center mt-4">
-        <Col
-          sm="12"
-          md="8"
-          lg="7"
-          className="d-flex justify-content-center align-items-center"
-          style={{ padding: "0 10%" }}
-        >
-          <Col>
-            <hr />
-          </Col>
-          <span>Or</span>
-          <Col>
-            <hr />
-          </Col>
-        </Col>
-        <Col sm="12" md="8" lg="7" className="mt-4">
-          <button className="btn text-dark btn-outline-light  w-100 border rounded-pill d-block m-auto shadow-sm">
-            <img
-              src={require("../../resources/Icon/fb.png")}
-              alt="fb"
-              width="37"
-              height="37"
-            />
-            <span className="">Continue With Facebook</span>
-          </button>
-          <button
-            className="btn text-dark btn-outline-light w-100 border rounded-pill d-block shadow-sm"
-            style={{ margin: "15px auto" }}
-          >
-            <img
-              src={require("../../resources/Icon/google.png")}
-              alt="fb"
-              width="37"
-              height="37"
-              className="mr-3"
-            />
-            <span className="ml-1 ml-md-5">Continue With Google</span>
-          </button>
+        <OrLine />
+        <Col sm="12" md="8" lg="6" className="my-4">
+          <FbBtn />
+          <GoogleBtn />
         </Col>
       </Row>
     </Container>
+  );
+};
+
+export const GoogleBtn = () => {
+  return (
+    <button
+      className="btn text-dark btn-outline-light border rounded-pill shadow-sm w-100"
+      style={{ margin: "15px auto" }}
+    >
+      <img
+        src={require("../../resources/Icon/google.png")}
+        alt="fb"
+        width="37"
+        height="37"
+        className="mr-3"
+      />
+      <span className="">Continue With Google</span>
+    </button>
+  );
+};
+export const FbBtn = () => {
+  return (
+    <button className="btn text-dark btn-outline-light border rounded-pill shadow-sm w-100">
+      <img
+        src={require("../../resources/Icon/fb.png")}
+        alt="fb"
+        width="37"
+        height="37"
+        className="ml-1"
+      />
+      <span className="">Continue With Facebook</span>
+    </button>
+  );
+};
+export const OrLine = () => {
+  return (
+    <Col
+      sm="12"
+      md="8"
+      lg="7"
+      className="d-flex justify-content-center align-items-center"
+      style={{ padding: "0 10%" }}
+    >
+      <Col>
+        <hr />
+      </Col>
+      <span>Or</span>
+      <Col>
+        <hr />
+      </Col>
+    </Col>
   );
 };
 

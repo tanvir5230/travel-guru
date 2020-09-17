@@ -13,9 +13,6 @@ body {
   border-bottom: 4px solid rgb(255, 217, 4);
   box-shadow: none;
 }
-input[type="checkbox"] {
-  margin-right: 5px;
-}
 input[placeholder] {
   font-weight: 400;
   letter-spacing: 1px;

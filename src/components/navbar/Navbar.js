@@ -5,7 +5,9 @@ import logoBlack from "../../resources/Logo.png";
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
 
 const SearchBox = ({ path }) => {
-  if (path === "/") {
+  if (path === "/signup" || path === "/login") {
+    return <div></div>;
+  } else {
     return (
       <div className="d-inline-block border px-2 rounded ml-md-auto search-box">
         <img src={require("../../resources/Icon/search.png")} alt="" />
@@ -16,8 +18,6 @@ const SearchBox = ({ path }) => {
         />
       </div>
     );
-  } else {
-    return <div></div>;
   }
 };
 
@@ -31,8 +31,10 @@ const MyNavbar = () => {
     textColor: "black",
     image: logoBlack,
   };
-  if (path === "/") {
-    navStyle.position = "absolute";
+  if (path === "/login" || path === "/signup") {
+    navStyle.position = "static";
+    console.log("hello");
+  } else {
     navStyle.textColor = "white";
     navStyle.image = logoWhite;
   }

@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Col, Container, Form, Row } from "reactstrap";
+import MyNavbar from "../navbar/Navbar";
 
 const SignUp = () => {
   return (
     <Container className="">
+      <Row>
+        <MyNavbar />
+      </Row>
       <Row className="justify-content-center align-items-center">
         <Col sm={12} md={8} lg={6} className="">
           <Form className="p-4 mt-4 shadow">

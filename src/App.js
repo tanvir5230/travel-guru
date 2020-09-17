@@ -5,12 +5,11 @@ import Login from "./components/login/Login";
 import SignUp from "./components/signup/SignUp";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/Home/Home";
-import MyNavbar from "./components/navbar/Navbar";
+import BookingDetails from "./components/BookingDetails/BookingDetails";
 const App = () => {
   return (
     <>
       <BrowserRouter>
-        <MyNavbar />
         <Switch>
           <Route exact path="/">
             <Home />
@@ -20,6 +19,9 @@ const App = () => {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/places/:id">
+            <BookingDetails />
           </Route>
         </Switch>
       </BrowserRouter>

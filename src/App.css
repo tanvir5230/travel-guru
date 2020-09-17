@@ -89,9 +89,6 @@ hr {
   font-weight: bold;
   margin-left: 8px;
 }
-/* .carousel-control-prev {
-  margin-right: 20px;
-} */
 
 /* booking */
 .booking-div label {
@@ -104,4 +101,19 @@ hr {
   background-color: #f2f2f2;
   border-radius: 5px;
   font-weight: bold;
+}
+
+.bg-overlay {
+  background-image: url("./resources/Image/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  background-blend-mode: overlay;
+}
+@media (min-width: 992px) {
+  .bg-overlay {
+    height: 100vh;
+  }
 }

@@ -1,12 +1,18 @@
 import React from "react";
+import { Container, Row } from "reactstrap";
 import MyNavbar from "../navbar/Navbar";
 import PlacesSlider from "../Slider/PlacesSlider";
 const Home = () => {
   return (
-    <div className="home">
-      <MyNavbar />
-      <PlacesSlider />
-      <div className="overlay"></div>
+    <div className="bg-overlay">
+      <Container>
+        <Row>
+          <MyNavbar />
+        </Row>
+        <Row>
+          <PlacesSlider />
+        </Row>
+      </Container>
     </div>
   );
 };

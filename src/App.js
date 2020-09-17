@@ -6,6 +6,7 @@ import SignUp from "./components/signup/SignUp";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/Home/Home";
 import BookingDetails from "./components/BookingDetails/BookingDetails";
+import NoRoute from "./components/NoRoute/NoRoute";
 const App = () => {
   return (
     <>
@@ -22,6 +23,9 @@ const App = () => {
           </Route>
           <Route path="/places/:id">
             <BookingDetails />
+          </Route>
+          <Route path="*">
+            <NoRoute />
           </Route>
         </Switch>
       </BrowserRouter>

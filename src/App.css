@@ -60,23 +60,12 @@ hr {
 }
 
 /* carousel */
-.carousel {
-  height: 80vh;
-  position: relative;
-  top: 20vh;
-  z-index: 100;
-}
-.carousel-item {
-  height: 70vh;
-  border: none;
-}
-.carousel img {
-  width: 150px;
+.carousel-img img {
+  margin: 0 15px;
 }
 .carousel-control {
   width: 120px;
   height: 50px;
-  position: relative;
   margin: 0 auto;
 }
 .carousel-control button {
@@ -112,8 +101,12 @@ hr {
   background-color: rgba(0, 0, 0, 0.7);
   background-blend-mode: overlay;
 }
+
 @media (min-width: 992px) {
   .bg-overlay {
     height: 100vh;
+  }
+  .overflow-lg-visible {
+    overflow: visible !important;
   }
 }

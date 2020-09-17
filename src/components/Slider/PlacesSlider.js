@@ -30,38 +30,36 @@ const PlacesSlider = () => {
 
     return (
       <>
-        <Col className="container" sm="12" md="9">
-          <Container>
-            <Row className="d-flex justify-content-md-end">
-              <Col className="order-1 order-lg-0" sm="5" md="7">
-                <h1>{name}</h1>
-                <p>{description}</p>
-                <Link to={`/places/${id}`}>
-                  <button className="btn btn-warning">Booking &#8594;</button>
-                </Link>
-              </Col>
-              <Col
-                sm="3"
-                md="3"
-                className="d-flex justify-content-center order-0 order-lg-1 align-align-self-end"
-              >
-                <img
-                  src={require("../../" + image)}
-                  alt=""
-                  width="200"
-                  height="300"
-                  style={{ border: "4px solid #ffb400", borderRadius: "20px" }}
-                />
-              </Col>
-            </Row>
-          </Container>
+        <Col sm="12" lg="6" className="text-white order-1 order-lg-0 mt-3">
+          <h1 className="text-center">{name}</h1>
+          <p className="text-justify">{description}</p>
+          <Link to={`/places/${id}`}>
+            <button className="btn btn-warning d-block m-auto">
+              Booking &#8594;
+            </button>
+          </Link>
         </Col>
 
         <Col
-          md="3"
-          className="d-none d-lg-flex justify-content-between align-items-center order-12 overflow-hidden"
+          sm="12"
+          lg="6"
+          className="d-flex justify-content-center justify-content-lg-between overflow carousel-img order-0 order-lg-1"
         >
+          <img
+            src={require("../../" + image)}
+            alt=""
+            width="225"
+            height="350"
+            className="order-1 order-lg-0"
+            style={{ border: "4px solid #ffb400", borderRadius: "20px" }}
+          />
           {itemsWithDiffId.map((item) => {
+            let imgId = item.id;
+            if (imgId === 1 && id === 2) {
+              imgId += 2;
+            } else if (imgId === 1 && id === 0) {
+              imgId = 0;
+            }
             return (
               <img
                 key={item.image}
@@ -69,7 +67,7 @@ const PlacesSlider = () => {
                 alt=""
                 width="200"
                 height="300"
-                className="ml-3"
+                className={`order-${imgId} order-lg-1 mt-4`}
                 onClick={() => goToIndex(item.id)}
               />
             );
@@ -80,25 +78,23 @@ const PlacesSlider = () => {
   };
 
   return (
-    <div
-      className="container-fluid text-white position-relative w-100"
-      style={{ top: "20vh", height: "auto", zIndex: 10 }}
-    >
-      <Row className="overflow-hidden mb-5">{slides(activeIndex)}</Row>
-      <Col xs="12">
-        <div
-          className="carousel-control m-auto d-block"
-          style={{ bottom: "20px" }}
-        >
-          <button onClick={previous} className="btn">
-            &lt;
-          </button>
-          <button onClick={next} className="btn">
-            &gt;
-          </button>
-        </div>
-      </Col>
-    </div>
+    <Container style={{ top: "20vh", height: "auto", zIndex: 10 }}>
+      <Row className="overflow-hidden overflow-lg-visible mt-3 mt-lg-5">
+        {slides(activeIndex)}
+      </Row>
+      <Row className="mt-5">
+        <Col xs="12">
+          <div className="carousel-control m-auto d-block">
+            <button onClick={previous} className="btn">
+              &lt;
+            </button>
+            <button onClick={next} className="btn">
+              &gt;
+            </button>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

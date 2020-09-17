@@ -11,7 +11,7 @@ const Login = () => {
         <MyNavbar />
       </Row>
       <Row className="justify-content-center align-items-center">
-        <Col sm={12} md={8} lg={6} className="">
+        <Col sm={10} md={8} lg={6} className="">
           <Form className="p-4 mt-5 shadow">
             <h3 className="font-weight-bold mb-4">Login</h3>
             <input
@@ -72,17 +72,17 @@ const Login = () => {
           </Col>
         </Col>
         <Col sm="12" md="8" lg="7" className="mt-4">
-          <button className="btn text-dark btn-outline-light  w-75 border rounded-pill d-block m-auto shadow-sm">
+          <button className="btn text-dark btn-outline-light  w-100 border rounded-pill d-block m-auto shadow-sm">
             <img
               src={require("../../resources/Icon/fb.png")}
               alt="fb"
               width="37"
               height="37"
             />
-            <span className="ml-5">Continue With Facebook</span>
+            <span className="">Continue With Facebook</span>
           </button>
           <button
-            className="btn text-dark btn-outline-light w-75 border rounded-pill d-block shadow-sm"
+            className="btn text-dark btn-outline-light w-100 border rounded-pill d-block shadow-sm"
             style={{ margin: "15px auto" }}
           >
             <img
@@ -92,7 +92,7 @@ const Login = () => {
               height="37"
               className="mr-3"
             />
-            <span className="ml-5">Continue With Google</span>
+            <span className="ml-1 ml-md-5">Continue With Google</span>
           </button>
         </Col>
       </Row>

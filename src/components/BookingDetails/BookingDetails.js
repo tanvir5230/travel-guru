@@ -14,8 +14,8 @@ const BookingDetails = () => {
         <Row>
           <MyNavbar />
         </Row>
-        <Row className="ml-2 ml-lg-4">
-          <Col sm="12" lg="7" className="p-5 text-white">
+        <Row className="mt-2 mt-lg-4">
+          <Col sm="12" lg="7" className="py-5 text-white">
             <h1
               className="font-weight-bold pb-2 text-capitalize"
               style={{ fontSize: "3.5rem" }}
@@ -37,7 +37,7 @@ const BookingDetails = () => {
                 </FormGroup>
                 <FormGroup>
                   <Label for="destination">Destination</Label>
-                  <Input type="text" value="Cox's Bazar"></Input>
+                  <Input type="text" value={place.name} readOnly></Input>
                 </FormGroup>
                 <FormGroup>
                   <Row>

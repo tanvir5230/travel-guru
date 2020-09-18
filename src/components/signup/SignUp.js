@@ -25,6 +25,42 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   });
+
+  // password visibility
+  const [type, setType] = useState({
+    passType: "password",
+    conPassType: "password",
+  });
+  const [watchState, setWatchState] = useState({
+    showPassword: false,
+    showConfirmPassword: false,
+  });
+  const toggleWatchState = (e) => {
+    e.preventDefault();
+    const { name } = e.target;
+    if (name === "pswBtn") {
+      let newState = { ...watchState };
+      newState.showPassword = !watchState.showPassword;
+      if (type.passType === "password") {
+        type.passType = "text";
+      } else {
+        type.passType = "password";
+      }
+      setType(type);
+      setWatchState(newState);
+    } else {
+      let newState = { ...watchState };
+      newState.showConfirmPassword = !watchState.showConfirmPassword;
+      if (type.conPassType === "password") {
+        type.conPassType = "text";
+      } else {
+        type.conPassType = "password";
+      }
+      setType(type);
+      setWatchState(newState);
+    }
+  };
+
   const [passwordMatch, setPasswordMatch] = useState(false);
 
   const handleChange = (event) => {
@@ -99,7 +135,6 @@ const SignUp = () => {
 
       case "password":
         const pwdValidate = isPassValid(value.length);
-        console.log(pwdValidate);
         if (!pwdValidate) {
           const newErrors = {
             ...errors,
@@ -125,7 +160,6 @@ const SignUp = () => {
           setErrors(newErrors);
           setPasswordMatch(false);
         } else {
-          console.log(value, user.password, passwordMatch);
           setPasswordMatch(true);
         }
         break;
@@ -154,10 +188,6 @@ const SignUp = () => {
     }
     event.preventDefault();
   };
-
-  // useEffect(() => {
-  //   console.log(user, errors, passwordMatch);
-  // });
 
   return (
     <Container className="">
@@ -201,28 +231,48 @@ const SignUp = () => {
               onChange={handleChange}
             />
             <p className="text-center text-danger py-2">{errors.email}</p>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-              className="form-control mt-3"
-              required
-              onBlur={handleBlur}
-              onChange={handleChange}
-            />
+            <div className="d-flex">
+              <input
+                type={type.passType}
+                name="password"
+                id="password"
+                placeholder="password"
+                className="form-control mt-3"
+                required
+                onBlur={handleBlur}
+                onChange={handleChange}
+              />
+              <button
+                className="btn-sm btn-primary mt-3"
+                onClick={toggleWatchState}
+                value={watchState.showPassword ? "hide" : "show"}
+                name="pswBtn"
+              >
+                {watchState.showPassword ? "hide" : "show"}
+              </button>
+            </div>
             <p className="text-center text-danger py-2">{errors.password}</p>
-            <input
-              type="password"
-              name="confirmPassword"
-              id="confirmPassword"
-              placeholder="confirm password"
-              className="form-control mt-3"
-              required
-              disabled={!(user.password.length >= 8)}
-              onBlur={handleBlur}
-              onChange={handleChange}
-            />
+            <div className="d-flex">
+              <input
+                type={type.conPassType}
+                name="confirmPassword"
+                id="confirmPassword"
+                placeholder="confirm password"
+                className="form-control mt-3"
+                required
+                disabled={!(user.password.length >= 8)}
+                onBlur={handleBlur}
+                onChange={handleChange}
+              />
+              <button
+                className="btn-sm btn-primary mt-3"
+                onClick={toggleWatchState}
+                name="confirmPswBtn"
+                value={watchState.showConfirmPassword ? "hide" : "show"}
+              >
+                {watchState.showConfirmPassword ? "hide" : "show"}
+              </button>
+            </div>
             <p className="text-center text-success py-2">
               {passwordMatch ? (
                 "your password matched."

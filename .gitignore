@@ -11,6 +11,9 @@
 # production
 /build
 
+# unnecessary files
+/travel-guru
+
 # misc
 .DS_Store
 .env.local

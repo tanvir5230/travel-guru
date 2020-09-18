@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap";
 import { data } from "../../resources/data";

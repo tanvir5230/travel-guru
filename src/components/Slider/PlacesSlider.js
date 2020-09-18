@@ -1,5 +1,5 @@
 import { data } from "../../resources/data";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 

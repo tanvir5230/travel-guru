@@ -16,7 +16,7 @@ const SearchBox = ({ path }) => {
     return <div></div>;
   } else {
     return (
-      <div className="d-inline-block border px-2 rounded ml-md-auto search-box">
+      <div className="d-inline-block border p-2 rounded ml-md-auto search-box">
         <img src={require("../../resources/Icon/search.png")} alt="" />
         <input
           className="bg-transparent text-white"
@@ -32,7 +32,6 @@ const MyNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const path = location.pathname.toLowerCase();
-  console.log(path);
   let navStyle = {
     position: "static",
     textColor: "black",

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import logoWhite from "../../resources/logo.svg";
 import logoBlack from "../../resources/Logo.png";
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
+import { Store } from "../../App";
 
 const SearchBox = ({ path }) => {
   if (
@@ -29,6 +30,7 @@ const SearchBox = ({ path }) => {
 };
 
 const MyNavbar = () => {
+  const { loggedInUser, handleSignOut } = useContext(Store);
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const path = location.pathname.toLowerCase();
@@ -98,12 +100,28 @@ const MyNavbar = () => {
             </NavItem>
           </Nav>
         </Collapse>
-        <Link
-          to="/Login"
-          className="d-none d-md-inline-block ml-lg-4 ml-auto mr-lg-3"
-        >
-          <button className="btn btn-warning ">Login</button>
-        </Link>
+        {loggedInUser && (
+          <div className="d-flex">
+            <button className="btn btn-success" onClick={handleSignOut}>
+              sign out
+            </button>
+            <button className="btn btn-light text-truncate">
+              {loggedInUser.displayName
+                ? loggedInUser.displayName
+                : loggedInUser.email.slice(0, 6)}
+            </button>
+          </div>
+        )}
+        {loggedInUser ? (
+          ""
+        ) : (
+          <Link
+            to="/Login"
+            className="d-none d-md-inline-block ml-lg-4 ml-auto mr-lg-3"
+          >
+            <button className="btn btn-warning">Login</button>
+          </Link>
+        )}
       </Navbar>
     </div>
   );

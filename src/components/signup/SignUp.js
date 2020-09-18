@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Col, Container, Form, Row } from "reactstrap";
+import { Store } from "../../App";
 import { FbBtn, GoogleBtn, OrLine } from "../login/Login";
 import MyNavbar from "../navbar/Navbar";
 
 const SignUp = () => {
+  const store = useContext(Store);
   const [user, setUser] = useState({
     firstname: "",
     lastname: "",
@@ -188,6 +190,14 @@ const SignUp = () => {
     }
     event.preventDefault();
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (user.password === user.confirmPassword) {
+      store.handleSignUpWithEmal(user.email, user.password);
+    } else {
+      alert("fill up the form correctly");
+    }
+  };
 
   return (
     <Container className="">
@@ -196,7 +206,7 @@ const SignUp = () => {
       </Row>
       <Row className="justify-content-center align-items-center">
         <Col sm={12} md={8} lg={6} className="">
-          <Form className="p-4 mt-4 shadow">
+          <Form className="p-4 mt-4 shadow" onSubmit={handleSubmit}>
             <h3 className="font-weight-bold mb-4">Create an account</h3>
             <input
               type="firstname"

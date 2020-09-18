@@ -1,17 +1,45 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Col, Container, Form, Row } from "reactstrap";
+import { Store } from "../../App";
 import MyNavbar from "../navbar/Navbar";
 
 const Login = () => {
+  const { handleLogin, handleSignUpWithGoogle } = useContext(Store);
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+    remember: false,
+  });
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    if (name === "remember") {
+      const newUser = {
+        ...user,
+        [name]: !user.remember,
+      };
+      setUser(newUser);
+    } else {
+      const newUser = {
+        ...user,
+        [name]: value,
+      };
+      setUser(newUser);
+    }
+    e.preventDefault();
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleLogin(user.email, user.password);
+  };
   return (
-    <Container className="">
+    <Container>
       <Row>
         <MyNavbar />
       </Row>
       <Row className="justify-content-center align-items-center">
-        <Col sm="10" md="8" lg="6" className="">
-          <Form className="p-4 mt-5 shadow">
+        <Col sm="10" md="8" lg="6">
+          <Form className="p-4 mt-5 shadow" onSubmit={handleSubmit}>
             <h3 className="font-weight-bold mb-4">Login</h3>
             <input
               type="email"
@@ -20,6 +48,7 @@ const Login = () => {
               placeholder="username or email"
               className="form-control mt-4"
               required
+              onBlur={handleBlur}
             />
             <input
               type="password"
@@ -28,10 +57,16 @@ const Login = () => {
               placeholder="password"
               className="form-control mt-4"
               required
+              onBlur={handleBlur}
             />
             <div className="d-flex justify-content-between align-items-center mt-4">
               <div className="pt-2">
-                <input type="checkbox" name="remember" id="remember" />
+                <input
+                  type="checkbox"
+                  name="remember"
+                  id="remember"
+                  onBlur={handleBlur}
+                />
                 <label htmlFor="remember">Remember Me</label>
               </div>
               <div>
@@ -58,18 +93,19 @@ const Login = () => {
         <OrLine />
         <Col sm="12" md="8" lg="6" className="my-4">
           <FbBtn />
-          <GoogleBtn />
+          <GoogleBtn handleSignUpWithGoogle={handleSignUpWithGoogle} />
         </Col>
       </Row>
     </Container>
   );
 };
 
-export const GoogleBtn = () => {
+export const GoogleBtn = ({ handleSignUpWithGoogle }) => {
   return (
     <button
       className="btn text-dark btn-outline-light border rounded-pill shadow-sm w-100"
       style={{ margin: "15px auto" }}
+      onClick={handleSignUpWithGoogle}
     >
       <img
         src={require("../../resources/Icon/google.png")}

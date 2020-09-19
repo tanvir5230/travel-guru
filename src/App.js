@@ -114,13 +114,12 @@ const App = () => {
               <SignUp />
             </Route>
             <Route path="/login">
-              {loggedInUser === null && <Login />}
-              {loggedInUser !== null && <Redirect to="/" />}
+              <Login />
             </Route>
             <Route path="/places/:id">
               <BookingDetails />
             </Route>
-            <PrivateRoute exact path="/booking/hotel-booking">
+            <PrivateRoute path="/booking/hotel-booking">
               <HotelBooking />
             </PrivateRoute>
             <Route path="*">

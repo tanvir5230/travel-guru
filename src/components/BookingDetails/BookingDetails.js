@@ -1,14 +1,15 @@
 import React, { useContext, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap";
 import { Store } from "../../App";
 import { data } from "../../resources/data";
 import MyNavbar from "../navbar/Navbar";
 
 const BookingDetails = () => {
+  const history = useHistory();
   const { id } = useParams();
   const place = data.find((item) => item.id === parseInt(id));
-  const { bookingInfo } = useContext(Store);
+  const { bookingInfo, loggedInUser } = useContext(Store);
   const { bookingDetails, setBookingDetails } = bookingInfo;
 
   const handleBlur = (e) => {
@@ -21,7 +22,13 @@ const BookingDetails = () => {
     };
     setBookingDetails(newBooking);
   };
-
+  const handleSubmit = () => {
+    if (loggedInUser) {
+      history.push("/booking/hotel-booking");
+    } else {
+      history.push("/login");
+    }
+  };
   return (
     <div className="bg-overlay">
       <Container>
@@ -40,7 +47,7 @@ const BookingDetails = () => {
           </Col>
           <Col className="m-auto py-5" sm="12" md="8" lg="5">
             <div className="booking-div bg-white rounded-lg">
-              <Form className="p-4">
+              <Form className="p-4" onSubmit={handleSubmit}>
                 <FormGroup>
                   <Label for="origin">Origin</Label>
                   <Input
@@ -87,13 +94,11 @@ const BookingDetails = () => {
                     </Col>
                   </Row>
                 </FormGroup>
-                <Link to="/booking/hotel-booking">
-                  <input
-                    className="d-block w-100 mt-3 btn btn-warning"
-                    type="submit"
-                    value="Start Booking"
-                  />
-                </Link>
+                <input
+                  className="d-block w-100 mt-3 btn btn-warning"
+                  type="submit"
+                  value="Start Booking"
+                />
               </Form>
             </div>
           </Col>

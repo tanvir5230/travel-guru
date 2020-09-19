@@ -4,6 +4,7 @@ import { Store } from "../../App";
 import { data } from "../../resources/data";
 import MyNavbar from "../navbar/Navbar";
 import star from "../../resources/Icon/star_1_.png";
+import Map from "../Map/Map";
 
 const HotelBooking = () => {
   const { bookingInfo } = useContext(Store);
@@ -48,7 +49,9 @@ const HotelBooking = () => {
           <Row>{HotelInfo()}</Row>
         </Col>
         <Col sm="10" md="6" className="" style={{ height: "100vh" }}>
-          <div className="w-100 h-100">google map here</div>
+          <div>
+            <Map />
+          </div>
         </Col>
       </Row>
     </Container>

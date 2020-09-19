@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/font-awesome/css/font-awesome.min.css";
 import "./App.css";
 import Login from "./components/login/Login";
 import SignUp from "./components/signup/SignUp";
@@ -15,7 +16,7 @@ import { firebaseConfig } from "./firebaseConfig";
 firebase.initializeApp(firebaseConfig);
 export const Store = createContext();
 
-const handleSignUpWithEmal = (email, password) => {
+const handleSignUpWithEmail = (email, password) => {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
@@ -33,7 +34,16 @@ const handleSignUpWithGoogle = () => {
       console.log(res);
     })
     .catch((err) => {
-      console.log(err.meassage);
+      alert(err.message);
+    });
+};
+const handleSignUpWithFb = () => {
+  const provider = new firebase.auth.FacebookAuthProvider();
+  firebase
+    .auth()
+    .signInWithPopup(provider)
+    .catch((err) => {
+      alert(err.message);
     });
 };
 const handleLogin = (email, password) => {
@@ -42,7 +52,7 @@ const handleLogin = (email, password) => {
     .signInWithEmailAndPassword(email, password)
     .then((res) => console.log(res))
     .catch((err) => {
-      console.log(err.meassage);
+      alert(err.message);
     });
 };
 const handleSignOut = () => {
@@ -76,8 +86,9 @@ const App = () => {
         value={{
           loggedInUser: loggedInUser,
           handleLogin: handleLogin,
-          handleSignUpWithEmal: handleSignUpWithEmal,
+          handleSignUpWithEmail: handleSignUpWithEmail,
           handleSignUpWithGoogle: handleSignUpWithGoogle,
+          handleSignUpWithFb: handleSignUpWithFb,
           handleSignOut: handleSignOut,
         }}
       >

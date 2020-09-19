@@ -5,12 +5,14 @@ import { Store } from "../../App";
 import MyNavbar from "../navbar/Navbar";
 
 const Login = () => {
-  const { handleLogin, handleSignUpWithGoogle } = useContext(Store);
+  const { handleLogin, handleSignUpWithFb } = useContext(Store);
+
   const [user, setUser] = useState({
     email: "",
     password: "",
     remember: false,
   });
+
   const handleBlur = (e) => {
     const { name, value } = e.target;
     if (name === "remember") {
@@ -93,14 +95,15 @@ const Login = () => {
         <OrLine />
         <Col sm="12" md="8" lg="6" className="my-4">
           <FbBtn />
-          <GoogleBtn handleSignUpWithGoogle={handleSignUpWithGoogle} />
+          <GoogleBtn />
         </Col>
       </Row>
     </Container>
   );
 };
 
-export const GoogleBtn = ({ handleSignUpWithGoogle }) => {
+export const GoogleBtn = () => {
+  const { handleSignUpWithGoogle } = useContext(Store);
   return (
     <button
       className="btn text-dark btn-outline-light border rounded-pill shadow-sm w-100"
@@ -119,8 +122,12 @@ export const GoogleBtn = ({ handleSignUpWithGoogle }) => {
   );
 };
 export const FbBtn = () => {
+  const { handleSignUpWithFb } = useContext(Store);
   return (
-    <button className="btn text-dark btn-outline-light border rounded-pill shadow-sm w-100">
+    <button
+      className="btn text-dark btn-outline-light border rounded-pill shadow-sm w-100"
+      onClick={handleSignUpWithFb}
+    >
       <img
         src={require("../../resources/Icon/fb.png")}
         alt="fb"
@@ -128,7 +135,7 @@ export const FbBtn = () => {
         height="37"
         className="ml-1"
       />
-      <span className="">Continue With Facebook</span>
+      <span>Continue With Facebook</span>
     </button>
   );
 };

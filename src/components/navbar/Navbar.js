@@ -28,6 +28,43 @@ const SearchBox = ({ path }) => {
     );
   }
 };
+const Profile = ({ loggedInUser, handleSignOut }) => {
+  return (
+    <>
+      {loggedInUser && (
+        <div className="d-flex ml-auto">
+          <button className="btn btn-light btn-sm">
+            <span className="d-none d-md-inline">
+              {loggedInUser.displayName
+                ? loggedInUser.displayName
+                : loggedInUser.email.slice(0, 6)}
+            </span>
+            <img
+              className="rounded-circle d-md-none"
+              src={loggedInUser.photoURL}
+              alt="profile"
+              width="30"
+              height="30"
+            />
+          </button>
+          <button className="btn btn-danger" onClick={handleSignOut}>
+            <span className="d-none d-lg-inline">sign out</span>
+            <span className="d-lg-none">
+              <i className="fa fa-sign-out"></i>
+            </span>
+          </button>
+        </div>
+      )}
+    </>
+  );
+};
+const LoginBtn = () => {
+  return (
+    <Link to="/Login">
+      <button className="btn btn-warning">Login</button>
+    </Link>
+  );
+};
 
 const MyNavbar = () => {
   const { loggedInUser, handleSignOut } = useContext(Store);
@@ -67,10 +104,23 @@ const MyNavbar = () => {
         <Link to="/">
           <img src={navStyle.image} alt="logo" width="120" height="56" />
         </Link>
-        <Link to="/Login" className="d-inline-block d-md-none ml-auto">
-          <button className="btn btn-warning ">Login</button>
-        </Link>
-        <NavbarToggler className="ml-3 border-white" onClick={toggle} />
+
+        {loggedInUser ? (
+          ""
+        ) : (
+          <div className="ml-auto d-md-none">
+            <LoginBtn />
+          </div>
+        )}
+        {loggedInUser && (
+          <div className="ml-auto d-md-none">
+            <Profile
+              handleSignOut={handleSignOut}
+              loggedInUser={loggedInUser}
+            />
+          </div>
+        )}
+        <NavbarToggler className=" border-white" onClick={toggle} />
         <Collapse className="" isOpen={isOpen} navbar>
           <SearchBox path={path} />
           <Nav className="ml-auto" navbar>
@@ -101,26 +151,19 @@ const MyNavbar = () => {
           </Nav>
         </Collapse>
         {loggedInUser && (
-          <div className="d-flex">
-            <button className="btn btn-success" onClick={handleSignOut}>
-              sign out
-            </button>
-            <button className="btn btn-light text-truncate">
-              {loggedInUser.displayName
-                ? loggedInUser.displayName
-                : loggedInUser.email.slice(0, 6)}
-            </button>
+          <div className="d-none d-md-block">
+            <Profile
+              handleSignOut={handleSignOut}
+              loggedInUser={loggedInUser}
+            />
           </div>
         )}
         {loggedInUser ? (
           ""
         ) : (
-          <Link
-            to="/Login"
-            className="d-none d-md-inline-block ml-lg-4 ml-auto mr-lg-3"
-          >
-            <button className="btn btn-warning">Login</button>
-          </Link>
+          <div className="d-none d-md-block">
+            <LoginBtn />
+          </div>
         )}
       </Navbar>
     </div>

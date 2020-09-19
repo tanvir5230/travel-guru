@@ -193,7 +193,7 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (user.password === user.confirmPassword) {
-      store.handleSignUpWithEmal(user.email, user.password);
+      store.handleSignUpWithEmail(user.email, user.password);
     } else {
       alert("fill up the form correctly");
     }

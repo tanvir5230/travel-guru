@@ -4,7 +4,7 @@ import "../node_modules/font-awesome/css/font-awesome.min.css";
 import "./App.css";
 import Login from "./components/login/Login";
 import SignUp from "./components/signup/SignUp";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Home from "./components/Home/Home";
 import BookingDetails from "./components/BookingDetails/BookingDetails";
 import NoRoute from "./components/NoRoute/NoRoute";
@@ -12,6 +12,8 @@ import { createContext } from "react";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import { firebaseConfig } from "./firebaseConfig";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import HotelBooking from "./components/HotelBooking/HotelBooking";
 
 firebase.initializeApp(firebaseConfig);
 export const Store = createContext();
@@ -70,6 +72,13 @@ const handleSignOut = () => {
 };
 const App = () => {
   const [loggedInUser, setLoggedInUser] = useState(null);
+  const [bookingDetails, setBookingDetails] = useState({
+    origin: "Dhaka",
+    destination: "",
+    dateFrom: "",
+    dateTo: "",
+  });
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -78,13 +87,17 @@ const App = () => {
         setLoggedInUser(user);
       }
     });
-  }, [loggedInUser]);
+  });
 
   return (
     <>
       <Store.Provider
         value={{
           loggedInUser: loggedInUser,
+          bookingInfo: {
+            bookingDetails: bookingDetails,
+            setBookingDetails: setBookingDetails,
+          },
           handleLogin: handleLogin,
           handleSignUpWithEmail: handleSignUpWithEmail,
           handleSignUpWithGoogle: handleSignUpWithGoogle,
@@ -101,11 +114,15 @@ const App = () => {
               <SignUp />
             </Route>
             <Route path="/login">
-              <Login />
+              {loggedInUser === null && <Login />}
+              {loggedInUser !== null && <Redirect to="/" />}
             </Route>
             <Route path="/places/:id">
               <BookingDetails />
             </Route>
+            <PrivateRoute exact path="/booking/hotel-booking">
+              <HotelBooking />
+            </PrivateRoute>
             <Route path="*">
               <NoRoute />
             </Route>

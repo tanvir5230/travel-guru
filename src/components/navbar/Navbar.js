@@ -6,16 +6,7 @@ import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
 import { Store } from "../../App";
 
 const SearchBox = ({ path }) => {
-  if (
-    path === "/login" ||
-    path === "/signup" ||
-    path === "/news" ||
-    path === "/blog" ||
-    path === "/contact" ||
-    path === "/destination"
-  ) {
-    return <div></div>;
-  } else {
+  if (path === "/" || /\/*\/\d/.test(path)) {
     return (
       <div className="d-inline-block border p-2 rounded ml-md-auto search-box">
         <img src={require("../../resources/Icon/search.png")} alt="" />
@@ -26,6 +17,8 @@ const SearchBox = ({ path }) => {
         />
       </div>
     );
+  } else {
+    return <div></div>;
   }
 };
 const Profile = ({ loggedInUser, handleSignOut }) => {
@@ -76,17 +69,10 @@ const MyNavbar = () => {
     textColor: "black",
     image: logoBlack,
   };
-  if (
-    path === "/login" ||
-    path === "/signup" ||
-    path === "/news" ||
-    path === "/blog" ||
-    path === "/contact" ||
-    path === "/destination"
-  ) {
-  } else {
+  if (path === "/" || /\/*\/\d/.test(path)) {
     navStyle.textColor = "white";
     navStyle.image = logoWhite;
+  } else {
   }
   const toggle = () => setIsOpen(!isOpen);
 

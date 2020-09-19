@@ -1,32 +1,27 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap";
+import { Store } from "../../App";
 import { data } from "../../resources/data";
 import MyNavbar from "../navbar/Navbar";
 
 const BookingDetails = () => {
   const { id } = useParams();
   const place = data.find((item) => item.id === parseInt(id));
+  const { bookingInfo } = useContext(Store);
+  const { bookingDetails, setBookingDetails } = bookingInfo;
 
-  const [bookingDetails, setBookingDetails] = useState({
-    origin: "Dhaka",
-    destination: place.name,
-    dateFrom: "",
-    dateTo: "",
-  });
   const handleBlur = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
     const newBooking = {
       ...bookingDetails,
       [name]: value,
+      destination: place.name,
     };
     setBookingDetails(newBooking);
   };
-  const handleSubmit = (e) => {
-    alert(JSON.stringify(bookingDetails));
-    e.preventDefault();
-  };
+
   return (
     <div className="bg-overlay">
       <Container>
@@ -34,7 +29,7 @@ const BookingDetails = () => {
           <MyNavbar />
         </Row>
         <Row className="mt-2 mt-lg-4">
-          <Col sm="12" lg="7" className="py-5 text-white">
+          <Col sm="12" lg="7" className="py-md-5 text-white">
             <h1
               className="font-weight-bold pb-2 text-capitalize"
               style={{ fontSize: "3.5rem" }}
@@ -92,12 +87,13 @@ const BookingDetails = () => {
                     </Col>
                   </Row>
                 </FormGroup>
-                <input
-                  className="d-block w-100 mt-3 btn btn-warning"
-                  type="submit"
-                  value="Start Booking"
-                  onClick={handleSubmit}
-                />
+                <Link to="/booking/hotel-booking">
+                  <input
+                    className="d-block w-100 mt-3 btn btn-warning"
+                    type="submit"
+                    value="Start Booking"
+                  />
+                </Link>
               </Form>
             </div>
           </Col>

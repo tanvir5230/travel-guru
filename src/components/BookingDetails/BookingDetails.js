@@ -9,7 +9,7 @@ const BookingDetails = () => {
   const history = useHistory();
   const { id } = useParams();
   const place = data.find((item) => item.id === parseInt(id));
-  const { bookingInfo, loggedInUser } = useContext(Store);
+  const { bookingInfo } = useContext(Store);
   const { bookingDetails, setBookingDetails } = bookingInfo;
 
   const handleBlur = (e) => {
@@ -23,11 +23,7 @@ const BookingDetails = () => {
     setBookingDetails(newBooking);
   };
   const handleSubmit = () => {
-    if (loggedInUser) {
-      history.push("/booking/hotel-booking");
-    } else {
-      history.push("/login");
-    }
+    history.push("/booking/hotel-booking");
   };
   return (
     <div className="bg-overlay">
@@ -79,7 +75,6 @@ const BookingDetails = () => {
                         id="from"
                         name="dateFrom"
                         onBlur={handleBlur}
-                        required="required"
                       ></Input>
                     </Col>
                     <Col md="6">
@@ -89,7 +84,6 @@ const BookingDetails = () => {
                         id="to"
                         name="dateTo"
                         onBlur={handleBlur}
-                        required="required"
                       ></Input>
                     </Col>
                   </Row>

@@ -1,11 +1,14 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { Col, Container, Form, Row } from "reactstrap";
 import { Store } from "../../App";
 import MyNavbar from "../navbar/Navbar";
 
 const Login = () => {
-  const { handleLogin, handleSignUpWithFb } = useContext(Store);
+  const { loggedInUser, handleLogin } = useContext(Store);
+  const history = useHistory();
+  const location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
 
   const [user, setUser] = useState({
     email: "",
@@ -34,6 +37,9 @@ const Login = () => {
     e.preventDefault();
     handleLogin(user.email, user.password);
   };
+  if (loggedInUser) {
+    history.replace(from);
+  }
   return (
     <Container>
       <Row>
@@ -41,7 +47,7 @@ const Login = () => {
       </Row>
       <Row className="justify-content-center align-items-center">
         <Col sm="10" md="8" lg="6">
-          <Form className="p-4 mt-5 shadow" onSubmit={handleSubmit}>
+          <Form className="p-4 mt-5 shadow">
             <h3 className="font-weight-bold mb-4">Login</h3>
             <input
               type="email"
@@ -80,6 +86,7 @@ const Login = () => {
                 type="submit"
                 value="Login"
                 className="btn w-100 rounded-0 btn-warning mt-4"
+                onClick={handleSubmit}
               />
             </div>
             <div>

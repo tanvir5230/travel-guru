@@ -8,13 +8,12 @@ import Map from "../Map/Map";
 
 const HotelBooking = () => {
   const { bookingInfo } = useContext(Store);
-  const { bookingDetails, setBookingDetails } = bookingInfo;
+  const { bookingDetails } = bookingInfo;
   const destinationPlace = bookingDetails.destination;
   const destinationPlaceDetails = data.find(
     (place) =>
       place.name.toLocaleLowerCase() === destinationPlace.toLocaleLowerCase()
   );
-  console.log(destinationPlaceDetails);
   const hotels = destinationPlaceDetails["hotels"];
   const HotelInfo = () => {
     return hotels.map((hotel) => {

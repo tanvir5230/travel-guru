@@ -26,7 +26,7 @@ const Profile = ({ loggedInUser, handleSignOut }) => {
     <>
       {loggedInUser && (
         <div className="d-flex ml-auto">
-          <button className="btn btn-light btn-sm">
+          <button className="btn btn-outline-success btn-sm border-0">
             <span className="d-none d-md-inline">
               {loggedInUser.displayName
                 ? loggedInUser.displayName
@@ -40,7 +40,10 @@ const Profile = ({ loggedInUser, handleSignOut }) => {
               height="30"
             />
           </button>
-          <button className="btn btn-danger" onClick={handleSignOut}>
+          <button
+            className="btn btn-outline-danger border-0"
+            onClick={handleSignOut}
+          >
             <span className="d-none d-lg-inline">sign out</span>
             <span className="d-lg-none">
               <i className="fa fa-sign-out"></i>
@@ -84,7 +87,7 @@ const MyNavbar = () => {
       <Navbar
         className="container-lg bg-danger"
         color="transparent"
-        light
+        dark
         expand="md"
       >
         <Link to="/">
@@ -106,11 +109,11 @@ const MyNavbar = () => {
             />
           </div>
         )}
-        <NavbarToggler className=" border-white" onClick={toggle} />
-        <Collapse className="" isOpen={isOpen} navbar>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
           <SearchBox path={path} />
-          <Nav className="ml-auto" navbar>
-            <NavItem>
+          <Nav className="ml-md-auto align-items-center" navbar>
+            <NavItem className="w-100 text-center py-2 py-md-0">
               <NavLink
                 style={{ color: navStyle.textColor }}
                 to="/news"
@@ -124,7 +127,7 @@ const MyNavbar = () => {
                 Destination
               </Link>
             </NavItem>
-            <NavItem>
+            <NavItem className="w-100 text-center py-2 py-md-0">
               <Link style={{ color: navStyle.textColor }} to="/blog">
                 Blog
               </Link>

@@ -6,7 +6,7 @@ export const data = [
     id: 0,
     name: "cox's bazar",
     description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam quidem aspernatur repudiandae dicta. Dolores quasi id delectus repudiandae voluptatibus enim excepturi blanditiis hic esse incidunt aspernatur inventore, totam fugit consequuntur libero quaerat in dolore vitae necessitatibus beatae nulla itaque. Facere, commodi maxime ab et perspiciatis omnis in deleniti harum. Eius!",
+      "Cox's Bazar is a district in the Chittagong Division of Bangladesh. It is named after Cox's Bazar town. It is located 150 kilometres (93 mi) south of Chittagong.",
     image: "resources/Image/Sajek.png",
     hotels: [
       {
@@ -49,7 +49,7 @@ export const data = [
     name: "sreemangal",
 
     description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam quidem aspernatur repudiandae dicta. Dolores quasi id delectus repudiandae voluptatibus enim excepturi blanditiis hic esse incidunt aspernatur inventore, totam fugit consequuntur libero quaerat in dolore vitae necessitatibus beatae nulla itaque. Facere, commodi maxime ab et perspiciatis omnis in deleniti harum. Eius!",
+      "Sreemangal, The Tea Capital of Bangladesh A large portion of world's highest quality tea is grown here. It is also called the city of 'two leaves and a bud. Sreemangal is famous for nature, forests and wildlife",
     image: "resources/Image/Sreemongol.png",
     hotels: [
       {
@@ -87,12 +87,11 @@ export const data = [
       },
     ],
   },
-
   {
     id: 2,
     name: "sundarbans",
     description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam quidem aspernatur repudiandae dicta. Dolores quasi id delectus repudiandae voluptatibus enim excepturi blanditiis hic esse incidunt aspernatur inventore, totam fugit consequuntur libero quaerat in dolore vitae necessitatibus beatae nulla itaque. Facere, commodi maxime ab et perspiciatis omnis in deleniti harum. Eius!",
+      "The Sundarbans is a mangrove area in the delta formed by the confluence of the Ganges, Brahmaputra and Meghna Rivers in the Bay of Bengal.",
     image: "resources/Image/sundorbon.png",
     hotels: [
       {

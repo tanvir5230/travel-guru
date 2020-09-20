@@ -18,58 +18,6 @@ import HotelBooking from "./components/HotelBooking/HotelBooking";
 firebase.initializeApp(firebaseConfig);
 export const Store = createContext();
 
-const handleSignUpWithEmail = (email, password) => {
-  firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then((res) => console.log(res))
-    .catch((err) => {
-      alert(err.message);
-    });
-};
-const handleSignUpWithGoogle = () => {
-  let provider = new firebase.auth.GoogleAuthProvider();
-  firebase
-    .auth()
-    .signInWithPopup(provider)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      alert(err.message);
-    });
-};
-const handleSignUpWithFb = () => {
-  const provider = new firebase.auth.FacebookAuthProvider();
-  firebase
-    .auth()
-    .signInWithPopup(provider)
-    .catch((err) => {
-      alert(err.message);
-    });
-};
-const handleLogin = (email, password) => {
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then((res) => console.log(res))
-    .catch((err) => {
-      alert(err.message);
-    });
-};
-const handleSignOut = () => {
-  firebase
-    .auth()
-    .signOut()
-    .then((res) => {
-      alert("sign out successfull");
-      console.log(res);
-    })
-    .catch((err) => {
-      alert("could not sign out.");
-      console.log(err.message);
-    });
-};
 const App = () => {
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [bookingDetails, setBookingDetails] = useState({
@@ -79,6 +27,59 @@ const App = () => {
     dateTo: "",
   });
 
+  const handleSignUpWithEmail = (email, password) => {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((res) => console.log(res))
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+  const handleSignUpWithGoogle = () => {
+    let provider = new firebase.auth.GoogleAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((res) => {
+        setLoggedInUser(res.user);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+  const handleSignUpWithFb = () => {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((res) => {
+        setLoggedInUser(res.user);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+  const handleLogin = (email, password) => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((res) => {
+        setLoggedInUser(res.user);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+  const handleSignOut = () => {
+    firebase
+      .auth()
+      .signOut()
+      .catch((err) => {
+        alert("could not sign out.");
+        console.log(err.message);
+      });
+  };
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -88,7 +89,6 @@ const App = () => {
       }
     });
   });
-
   return (
     <>
       <Store.Provider

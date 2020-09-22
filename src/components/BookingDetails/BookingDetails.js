@@ -75,6 +75,7 @@ const BookingDetails = () => {
                         id="from"
                         name="dateFrom"
                         onBlur={handleBlur}
+                        required
                       ></Input>
                     </Col>
                     <Col md="6">
@@ -84,6 +85,7 @@ const BookingDetails = () => {
                         id="to"
                         name="dateTo"
                         onBlur={handleBlur}
+                        required
                       ></Input>
                     </Col>
                   </Row>

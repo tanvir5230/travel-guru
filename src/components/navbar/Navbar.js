@@ -5,8 +5,8 @@ import logoBlack from "../../resources/Logo.png";
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
 import { Store } from "../../App";
 
-const SearchBox = ({ path }) => {
-  if (path === "/" || /\/*\/\d/.test(path)) {
+const SearchBox = ({ darkPath }) => {
+  if (darkPath) {
     return (
       <div className="d-inline-block border p-2 rounded ml-md-auto search-box">
         <img src={require("../../resources/Icon/search.png")} alt="" />
@@ -72,7 +72,8 @@ const MyNavbar = () => {
     textColor: "black",
     image: logoBlack,
   };
-  if (path === "/" || /\/*\/\d/.test(path)) {
+  const darkPath = path === "/" || /\/*\/\d/.test(path); //need white things
+  if (darkPath) {
     navStyle.textColor = "white";
     navStyle.image = logoWhite;
   } else {
@@ -87,7 +88,8 @@ const MyNavbar = () => {
       <Navbar
         className="container-lg bg-danger"
         color="transparent"
-        dark
+        dark={darkPath ? true : false}
+        light={darkPath ? false : true}
         expand="md"
       >
         <Link to="/">
@@ -111,7 +113,7 @@ const MyNavbar = () => {
         )}
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <SearchBox path={path} />
+          <SearchBox darkPath={darkPath} />
           <Nav className="ml-md-auto align-items-center" navbar>
             <NavItem className="w-100 text-center py-2 py-md-0">
               <NavLink

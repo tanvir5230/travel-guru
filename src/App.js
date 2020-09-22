@@ -4,7 +4,7 @@ import "../node_modules/font-awesome/css/font-awesome.min.css";
 import "./App.css";
 import Login from "./components/login/Login";
 import SignUp from "./components/signup/SignUp";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/Home/Home";
 import BookingDetails from "./components/BookingDetails/BookingDetails";
 import NoRoute from "./components/NoRoute/NoRoute";

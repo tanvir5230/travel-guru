@@ -11,7 +11,6 @@ export default function MyMap({ hotels }) {
       />
       {hotels.map((hotel) => {
         const pos = hotel.position;
-        console.log(hotel.position);
         return (
           <Marker position={pos}>
             <Popup>{hotel.name}</Popup>

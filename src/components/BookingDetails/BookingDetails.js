@@ -23,7 +23,7 @@ const BookingDetails = () => {
     setBookingDetails(newBooking);
   };
   const handleSubmit = () => {
-    history.push("/booking/hotel-booking");
+    history.push("/booking/hotel-booking/" + place.name);
   };
   return (
     <div className="bg-overlay">

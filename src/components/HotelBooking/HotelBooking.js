@@ -1,19 +1,18 @@
 import React, { useContext } from "react";
 import { Col, Container, Row } from "reactstrap";
-import { Store } from "../../App";
 import { data } from "../../resources/data";
 import MyNavbar from "../navbar/Navbar";
 import star from "../../resources/Icon/star_1_.png";
 import MyMap from "../Map/Map";
+import { useLocation } from "react-router-dom";
 
 const HotelBooking = () => {
-  const { bookingInfo } = useContext(Store);
-  const { bookingDetails } = bookingInfo;
-  const destinationPlace = bookingDetails.destination;
+  const location = useLocation();
+  const placePath = location.pathname.split("/").pop();
   const destinationPlaceDetails = data.find(
-    (place) =>
-      place.name.toLocaleLowerCase() === destinationPlace.toLocaleLowerCase()
+    (place) => place.name.toLocaleLowerCase() === placePath.toLocaleLowerCase()
   );
+
   const hotels = destinationPlaceDetails["hotels"];
   const HotelInfo = () => {
     return hotels.map((hotel) => {
@@ -41,7 +40,7 @@ const HotelBooking = () => {
       </Row>
       <hr />
       <Row className="justify-content-center justify-content-md-start">
-        <h1>Stay in {destinationPlace}</h1>
+        <h1>Stay in {placePath}</h1>
       </Row>
       <Row className="justify-content-center">
         <Col sm="10" md="6">
